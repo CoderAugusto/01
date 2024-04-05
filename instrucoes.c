@@ -29,8 +29,10 @@ void inteiro_para_binario(int numero, char *binario, int bits) {
 }
 
 void imediato_para_binario(char *imediato, char *binario) {
+
     // Converte a string em um número inteiro
     int numero = atoi(imediato);
+
 
     // Se o número for negativo, aplicamos o complemento de dois
     if (numero < 0) {
@@ -41,6 +43,7 @@ void imediato_para_binario(char *imediato, char *binario) {
     // Chama a função auxiliar para converter o número para binário
     inteiro_para_binario(numero, binario, 12);
 }
+
 
 void escrever_no_arquivo(FILE *arquivo, const char *codigo_maquina) {
     // Escreve o código de máquina no arquivo
@@ -54,7 +57,7 @@ void escrever_no_arquivo(FILE *arquivo, const char *codigo_maquina) {
 
 
 int obterInstrucao(struct TabelaInstrucoes *tabela, char *nomeInstrucao, char *regDestino, char *regFonte1, char *regFonte2, FILE *arquivoSaida) {
-    
+
     // Variáveis
     char binario_regDestino[6];
     char binario_regFonte1[6];
@@ -65,6 +68,7 @@ int obterInstrucao(struct TabelaInstrucoes *tabela, char *nomeInstrucao, char *r
     registrador_para_binario(regDestino, binario_regDestino);
     registrador_para_binario(regFonte1, binario_regFonte1);
     registrador_para_binario(regFonte2, binario_regFonte2);
+
 
     printf("\nO registrador %s em binário é: %s\n", regDestino, binario_regDestino);
     printf("O registrador %s em binário é: %s\n", regFonte1, binario_regFonte1);

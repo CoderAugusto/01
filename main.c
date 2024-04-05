@@ -25,7 +25,11 @@ int main() {
 
     **************************************************************/
     char linha[100];
-    char nomeInstrucao[20], regDestino[5], regFonte1[5], regFonte2[5], offset[10];;
+    char nomeInstrucao[20];
+    char regDestino[5];
+    char regFonte1[12];
+    char regFonte2[12];
+    char offset[10];
     
     /**************************************************************
 
@@ -128,13 +132,13 @@ int main() {
         
         
         printf("\n\n\n");
-        /*
+        
         printf("Linha lida: %s", linha);
         printf("Instrução: %s\n", nomeInstrucao);
         printf("Registrador destino: %s\n", regDestino);
         printf("Registrador fonte 1: %s\n", regFonte1);
         printf("Registrador fonte 2: %s\n", regFonte2);
-        */
+        
             
             
         // Verificar o tipo da instrução e obter as informações da tabela correspondente
@@ -142,7 +146,6 @@ int main() {
         //TIPO I
         if (strcmp(nomeInstrucao, "lb") == 0 || strcmp(nomeInstrucao, "lh") == 0 || strcmp(nomeInstrucao, "lw") == 0 ||
             strcmp(nomeInstrucao, "addi") == 0 || strcmp(nomeInstrucao, "andi") == 0 || strcmp(nomeInstrucao, "ori") == 0) {
-                
             if (obterInstrucao(&tabelaTipoI, nomeInstrucao, regDestino, regFonte1, regFonte2, arquivoSaida)!= 1) {
                 printf("Instrução %s não encontrada\n", nomeInstrucao);
             }
