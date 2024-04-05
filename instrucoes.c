@@ -207,17 +207,41 @@ int obterInstrucao(struct TabelaInstrucoes *tabela, char *nomeInstrucao, char *r
         printf("funct3: %s\n", tabela->funct3[0]);
 
 
-    }else if (strcmp(nomeInstrucao, "sh") == 0){
+    }else if (strcmp(nomeInstrucao, "sh") == 0) {
         printf("opcode: %s\n", tabela->opcode);
-        printf("funct3: %s\n", tabela->funct3[1]);
-
-
-    }else if (strcmp(nomeInstrucao, "sw") == 0){
+        printf("funct3: %s\n", tabela->funct3[7]);
+    
+        // Convertendo imediato para binário
+        imediato_para_binario(regFonte2, binario_imediato);
+        printf("O imediato %s em binário de 12 bits é: %s\n", regFonte2, binario_imediato);
+    
+        // Escreve no arquivo de saída
+        fprintf(arquivoSaida, "%s%s%s%s%s\n", binario_imediato, binario_regFonte1, tabela->funct3[7], binario_regDestino, tabela->opcode);
+    
+        // Verifica se houve erro durante a escrita
+        if (ferror(arquivoSaida)) {
+            printf("Erro ao escrever no arquivo de saída.\n");
+            return 0; // Indica que ocorreu um erro
+        }
+    }  
+    
+   else if (strcmp(nomeInstrucao, "sw") == 0) {
         printf("opcode: %s\n", tabela->opcode);
-        printf("funct3: %s\n", tabela->funct3[2]);
-
+        printf("funct3: %s\n", tabela->funct3[6]);
+    
+        // Convertendo imediato para binário
+        imediato_para_binario(regFonte2, binario_imediato);
+        printf("O imediato %s em binário de 12 bits é: %s\n", regFonte2, binario_imediato);
+    
+        // Escreve no arquivo de saída
+        fprintf(arquivoSaida, "%s%s%s%s%s\n", binario_imediato, binario_regFonte1, tabela->funct3[6], binario_regDestino, tabela->opcode);
+    
+        // Verifica se houve erro durante a escrita
+        if (ferror(arquivoSaida)) {
+            printf("Erro ao escrever no arquivo de saída.\n");
+            return 0; // Indica que ocorreu um erro
+        }
     }
-
 
     /**************************************************************
 
