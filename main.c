@@ -3,8 +3,6 @@
 #include <string.h>
 #include "instrucoes.h"
 
-//Só para teste
-
 /* 
     TIPO I
     lb, lh, lw, addi, andi, ori
