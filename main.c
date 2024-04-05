@@ -108,36 +108,40 @@ int main() {
     // Processar cada linha do arquivo
     while (fgets(linha, sizeof(linha), arquivoEntrada) != NULL) {
 
-        /*
+        sscanf(linha,"%s", nomeInstrucao);
+        
         // TIPO S
         if (strcmp(nomeInstrucao, "sb") == 0 || strcmp(nomeInstrucao, "sh") == 0 || strcmp(nomeInstrucao, "sw") == 0) {
 
             sscanf(linha, "%s %[^,], %[^(](%[^)])", nomeInstrucao, regDestino, offset, regFonte1);
-
+            
+            
             printf("\n\n\n");
             printf("Linha lida: %s", linha);
             printf("Instrução: %s\n", nomeInstrucao);
             printf("Registrador destino: %s\n", regDestino);
             printf("Registrador offset: %s\n", offset);
             printf("Registrador regFonte1: %s\n", regFonte1);
+            
 
             if (obterInstrucao(&tabelaTipoS, nomeInstrucao, regDestino, offset, regFonte1, arquivoSaida)!= 1) {
                 printf("Instrução %s não encontrada\n", nomeInstrucao);
-            }
-            
+            }            
         }
-        */
+        
 
         sscanf(linha, "%s %[^,], %[^,], %[^,]", nomeInstrucao, regDestino, regFonte1, regFonte2);
         
         
         printf("\n\n\n");
-        
+
+        /*
         printf("Linha lida: %s", linha);
         printf("Instrução: %s\n", nomeInstrucao);
         printf("Registrador destino: %s\n", regDestino);
         printf("Registrador fonte 1: %s\n", regFonte1);
         printf("Registrador fonte 2: %s\n", regFonte2);
+        */
         
             
             
