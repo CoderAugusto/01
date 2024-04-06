@@ -12,12 +12,11 @@ struct TabelaInstrucoes {
 };
 
 
-
-int obterInstrucao(struct TabelaInstrucoes *tabela, char *nomeInstrucao, char *regDestino, char *regFonte1, char *regFonte2, FILE *arquivoSaida);
-void registrador_para_binario(char *reg, char *binario);
+void registrador_para_binario(char *reg, char *binario, int tamanho);
 void inteiro_para_binario(int numero, char *binario, int bits);
 void imediato_para_binario(char *imediato, char *binario);
 void escrever_no_arquivo(FILE *arquivo, const char *codigo_maquina);
+void converter_offset(const char *offset, char *binario_offset);
 
 
 #endif /* INSTRUCOES_H */

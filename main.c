@@ -1,7 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 #include "instrucoes.h"
+#include "tipoI.h"
+#include "tipoR.h"
+#include "tipoS.h"
+#include "tipoSB.h"
 
 /* 
     TIPO I
@@ -26,10 +31,10 @@ int main() {
     **************************************************************/
     char linha[100];
     char nomeInstrucao[20];
-    char regDestino[5];
-    char regFonte1[12];
-    char regFonte2[12];
-    char offset[10];
+    char regDestino[6];
+    char regFonte1[13];
+    char regFonte2[13];
+    char offset[13];
     
     /**************************************************************
 
@@ -108,23 +113,16 @@ int main() {
     // Processar cada linha do arquivo
     while (fgets(linha, sizeof(linha), arquivoEntrada) != NULL) {
 
+        printf("%s\n", linha);
+
         sscanf(linha,"%s", nomeInstrucao);
         
         // TIPO S
         if (strcmp(nomeInstrucao, "sb") == 0 || strcmp(nomeInstrucao, "sh") == 0 || strcmp(nomeInstrucao, "sw") == 0) {
 
-            sscanf(linha, "%s %[^,], %[^(](%[^)])", nomeInstrucao, regDestino, offset, regFonte1);
-            
-            
-            printf("\n\n\n");
-            printf("Linha lida: %s", linha);
-            printf("Instrução: %s\n", nomeInstrucao);
-            printf("Registrador destino: %s\n", regDestino);
-            printf("Registrador offset: %s\n", offset);
-            printf("Registrador regFonte1: %s\n", regFonte1);
-            
+            sscanf(linha, "%s %[^,], %[^(](%[^)])", nomeInstrucao, regDestino, offset, regFonte1);            
 
-            if (obterInstrucao(&tabelaTipoS, nomeInstrucao, regDestino, offset, regFonte1, arquivoSaida)!= 1) {
+            if (obterInstrucaoTipoS(&tabelaTipoS, nomeInstrucao, regDestino, offset, regFonte1, arquivoSaida)!= 1) {
                 printf("Instrução %s não encontrada\n", nomeInstrucao);
             }            
         }
@@ -150,7 +148,7 @@ int main() {
         //TIPO I
         if (strcmp(nomeInstrucao, "lb") == 0 || strcmp(nomeInstrucao, "lh") == 0 || strcmp(nomeInstrucao, "lw") == 0 ||
             strcmp(nomeInstrucao, "addi") == 0 || strcmp(nomeInstrucao, "andi") == 0 || strcmp(nomeInstrucao, "ori") == 0) {
-            if (obterInstrucao(&tabelaTipoI, nomeInstrucao, regDestino, regFonte1, regFonte2, arquivoSaida)!= 1) {
+            if (obterInstrucaoTipoI(&tabelaTipoI, nomeInstrucao, regDestino, regFonte1, regFonte2, arquivoSaida)!= 1) {
                 printf("Instrução %s não encontrada\n", nomeInstrucao);
             }
 
@@ -159,21 +157,14 @@ int main() {
                 strcmp(nomeInstrucao, "or") == 0 || strcmp(nomeInstrucao, "xor") == 0 || strcmp(nomeInstrucao, "sll") == 0 ||
                 strcmp(nomeInstrucao, "srl") == 0) {
                     
-            if (obterInstrucao(&tabelaTipoR, nomeInstrucao, regDestino, regFonte1, regFonte2, arquivoSaida)!= 1) {
+            if (obterInstrucaoTipoR(&tabelaTipoR, nomeInstrucao, regDestino, regFonte1, regFonte2, arquivoSaida)!= 1) {
                 printf("Instrução %s não encontrada\n", nomeInstrucao);
             }
 
-        // TIPO SB
-        } else if (strcmp(nomeInstrucao, "bne") == 0 || strcmp(nomeInstrucao, "beq") == 0) {
-            if (obterInstrucao(&tabelaTipoSB, nomeInstrucao, regDestino, regFonte1, regFonte2, arquivoSaida)!= 1) {
-                    printf("Instrução %s não encontrada\n", nomeInstrucao);
-            }
-
-        
         // PSEUDO CÓDIGO
         } else if (strcmp(nomeInstrucao, "mv") == 0) {
             // "mv" é equivalente a "add" em RISC-V
-            if (obterInstrucao(&tabelaTipoR, "add", regDestino, regFonte1, "x0", arquivoSaida)!= 1) {
+            if (obterInstrucaoTipoR(&tabelaTipoR, "add", regDestino, regFonte1, "x0", arquivoSaida)!= 1) {
                 printf("Erro ao obter instrução 'mv'.\n");
             }
         } else {
