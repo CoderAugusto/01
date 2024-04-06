@@ -13,5 +13,5 @@ O projeto é organizado da seguinte maneira:
 - **saida.asm**: O arquivo de saída onde o código de máquina correspondente a cada instrução será gerado.
 
 ## Compilação e Execução
-- **1º: gcc instrucoes.c main.c tipoI.c tipoR.c tipoS.c tipoSB.c -o main;
-- **2º: ./main
+- **1º:** gcc instrucoes.c main.c tipoI.c tipoR.c tipoS.c tipoSB.c -o main;
+- **2º:** ./main
