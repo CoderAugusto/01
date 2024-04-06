@@ -113,7 +113,7 @@ int main() {
     // Processar cada linha do arquivo
     while (fgets(linha, sizeof(linha), arquivoEntrada) != NULL) {
 
-        printf("%s\n", linha);
+        printf("\n%s", linha);
 
         sscanf(linha,"%s", nomeInstrucao);
         
@@ -125,29 +125,26 @@ int main() {
             if (obterInstrucaoTipoS(&tabelaTipoS, nomeInstrucao, regDestino, offset, regFonte1, arquivoSaida)!= 1) {
                 printf("Instrução %s não encontrada\n", nomeInstrucao);
             }            
-        }
-        
+        }        
 
         sscanf(linha, "%s %[^,], %[^,], %[^,]", nomeInstrucao, regDestino, regFonte1, regFonte2);
         
         
         printf("\n\n\n");
-
-        /*
-        printf("Linha lida: %s", linha);
-        printf("Instrução: %s\n", nomeInstrucao);
-        printf("Registrador destino: %s\n", regDestino);
-        printf("Registrador fonte 1: %s\n", regFonte1);
-        printf("Registrador fonte 2: %s\n", regFonte2);
-        */
         
-            
-            
         // Verificar o tipo da instrução e obter as informações da tabela correspondente
 
         //TIPO I
-        if (strcmp(nomeInstrucao, "lb") == 0 || strcmp(nomeInstrucao, "lh") == 0 || strcmp(nomeInstrucao, "lw") == 0 ||
-            strcmp(nomeInstrucao, "addi") == 0 || strcmp(nomeInstrucao, "andi") == 0 || strcmp(nomeInstrucao, "ori") == 0) {
+
+        if(strcmp(nomeInstrucao, "lw") == 0 || strcmp(nomeInstrucao, "lb") == 0 || strcmp(nomeInstrucao, "lh") == 0){
+
+            sscanf(linha, "%s %[^,], %[^(](%[^)])", nomeInstrucao, regDestino, offset, regFonte1);            
+
+            if (obterInstrucaoTipoI(&tabelaTipoS, nomeInstrucao, regDestino, offset, regFonte1, arquivoSaida)!= 1) {
+                printf("Instrução %s não encontrada\n", nomeInstrucao);
+            }
+
+        } else if (strcmp(nomeInstrucao, "addi") == 0 || strcmp(nomeInstrucao, "andi") == 0 || strcmp(nomeInstrucao, "ori") == 0) {
             if (obterInstrucaoTipoI(&tabelaTipoI, nomeInstrucao, regDestino, regFonte1, regFonte2, arquivoSaida)!= 1) {
                 printf("Instrução %s não encontrada\n", nomeInstrucao);
             }
