@@ -60,7 +60,7 @@ int obterInstrucaoTipoS(struct TabelaInstrucoes *tabela, char *nomeInstrucao, ch
         printf("funct3: %s\n", tabela->funct3[0]);
 
         // Escreve no arquivo de saída
-        fprintf(arquivoSaida, "%s%s%s%s%s%s\n", parte_superior, regDestino, regEndBase,tabela->funct3[0], parte_inferior, tabela->opcode);
+        fprintf(arquivoSaida, "%s%s%s%s%s%s\n", parte_superior, binario_regDestino, binario_endBase,tabela->funct3[0], parte_inferior, tabela->opcode);
         
 
 
@@ -70,7 +70,7 @@ int obterInstrucaoTipoS(struct TabelaInstrucoes *tabela, char *nomeInstrucao, ch
         printf("funct3: %s\n", tabela->funct3[1]);
 
         // Escreve no arquivo de saída
-        fprintf(arquivoSaida, "%s%s%s%s%s%s\n", parte_superior, regDestino, regEndBase,tabela->funct3[1], parte_inferior, tabela->opcode);
+        fprintf(arquivoSaida, "%s%s%s%s%s%s\n", parte_superior, binario_regDestino, binario_endBase,tabela->funct3[1], parte_inferior, tabela->opcode);
 
     }  
     
@@ -79,7 +79,7 @@ int obterInstrucaoTipoS(struct TabelaInstrucoes *tabela, char *nomeInstrucao, ch
         printf("funct3: %s\n", tabela->funct3[2]);
 
         // Escreve no arquivo de saída
-        fprintf(arquivoSaida, "%s%s%s%s%s%s\n", parte_superior, regDestino, regEndBase,tabela->funct3[2], parte_inferior, tabela->opcode);
+        fprintf(arquivoSaida, "%s%s%s%s%s%s\n", parte_superior, binario_regDestino, binario_endBase,tabela->funct3[2], parte_inferior, tabela->opcode);
     
     }
 

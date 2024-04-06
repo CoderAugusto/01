@@ -61,7 +61,7 @@ int obterInstrucaoTipoSB(struct TabelaInstrucoes *tabela, char *nomeInstrucao, c
         printf("funct3: %s\n", tabela->funct3[0]);
 
         // Escreve no arquivo de saída
-        fprintf(arquivoSaida, "%s%s%s%s%s%s%s%s\n", parte_bit12, parte_bits10_5, regFonte1, regFonte2, tabela->funct3[0], parte_bits4_0, parte_bit11, tabela->opcode);
+        fprintf(arquivoSaida, "%s%s%s%s%s%s%s%s\n", parte_bit12, parte_bits10_5, binario_regFonte1, binario_regFonte2, tabela->funct3[0], parte_bits4_0, parte_bit11, tabela->opcode);
 
     } else if (strcmp(nomeInstrucao, "beq") == 0){
 
@@ -69,7 +69,7 @@ int obterInstrucaoTipoSB(struct TabelaInstrucoes *tabela, char *nomeInstrucao, c
         printf("funct3: %s\n", tabela->funct3[1]);
 
         // Escreve no arquivo de saída
-        fprintf(arquivoSaida, "%s%s%s%s%s%s%s%s\n", parte_bit12, parte_bits10_5, regFonte2, regFonte1, tabela->funct3[1], parte_bits4_0, parte_bit11, tabela->opcode);
+        fprintf(arquivoSaida, "%s%s%s%s%s%s%s%s\n", parte_bit12, parte_bits10_5, binario_regFonte2, binario_regFonte1, tabela->funct3[1], parte_bits4_0, parte_bit11, tabela->opcode);
         
     }
 
