@@ -8,6 +8,9 @@
 #include "tipoS.h"
 #include "tipoSB.h"
 
+#define ARQUIVO_ENTRADA "entrada.asm"
+#define ARQUIVO_SAIDA "saida.asm"
+
 /* 
     TIPO I
     lb, lh, lw, addi, andi, ori
@@ -45,13 +48,13 @@ int main() {
     FILE *arquivoSaida;
 
     // Abrir arquivo de entrada
-    arquivoEntrada = fopen("entrada.asm", "r");
+    arquivoEntrada = fopen(ARQUIVO_ENTRADA, "r");
     if (arquivoEntrada == NULL) {
         perror("Erro ao abrir o arquivo");
         return 1;
     }
 
-    arquivoSaida = fopen("saida.asm", "w");
+    arquivoSaida = fopen(ARQUIVO_SAIDA, "w");
     if (arquivoSaida == NULL) {
         perror("Erro ao abrir o arquivo de saída");
         return 1;
@@ -135,7 +138,6 @@ int main() {
         // Verificar o tipo da instrução e obter as informações da tabela correspondente
 
         //TIPO I
-
         if(strcmp(nomeInstrucao, "lw") == 0 || strcmp(nomeInstrucao, "lb") == 0 || strcmp(nomeInstrucao, "lh") == 0){
 
             sscanf(linha, "%s %[^,], %[^(](%[^)])", nomeInstrucao, regDestino, offset, regFonte1);            
@@ -157,6 +159,12 @@ int main() {
             if (obterInstrucaoTipoR(&tabelaTipoR, nomeInstrucao, regDestino, regFonte1, regFonte2, arquivoSaida)!= 1) {
                 printf("Instrução %s não encontrada\n", nomeInstrucao);
             }
+        } else if(strcmp(nomeInstrucao, "bne") == 0 || strcmp(nomeInstrucao, "beq") == 0){
+
+            if (obterInstrucaoTipoSB(&tabelaTipoR, nomeInstrucao, regDestino, regFonte1, regFonte2, arquivoSaida)!= 1) {
+                printf("Instrução %s não encontrada\n", nomeInstrucao);
+            }
+
 
         // PSEUDO CÓDIGO
         } else if (strcmp(nomeInstrucao, "mv") == 0) {
