@@ -9,7 +9,7 @@
 #include "tipoS.h"
 #include "tipoSB.h"
 
-int obterInstrucaoTipoI(struct TabelaInstrucoes *tabela, char *nomeInstrucao, char *regDestino, char *regFonte1, char *regImediato, FILE *arquivoSaida, FILE *arquivoSaidaHex) {
+int obterInstrucaoTipoI(struct TabelaInstrucoes *tabela, char *nomeInstrucao, char *regDestino, char *regFonte1, char *regImediato, FILE *arquivoSaida) {
 
     /*
         Faz a veridicação das instruções lw, lb e lh primeiramente pois elas seguem um padrão diferente das outras do grupo

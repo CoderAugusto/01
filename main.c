@@ -157,12 +157,12 @@ int main() {
 
             sscanf(linha, "%s %[^,], %[^(](%[^)])", nomeInstrucao, regDestino, offset, regFonte1);            
 
-            if (obterInstrucaoTipoI(&tabelaTipoI, nomeInstrucao, regDestino, offset, regFonte1, arquivoSaida,arquivoSaidaHex)!= 1) {
+            if (obterInstrucaoTipoI(&tabelaTipoI, nomeInstrucao, regDestino, offset, regFonte1, arquivoSaida)!= 1) {
                 printf("Instrução %s não encontrada\n", nomeInstrucao);
             }
 
         } else if (strcmp(nomeInstrucao, "addi") == 0 || strcmp(nomeInstrucao, "andi") == 0 || strcmp(nomeInstrucao, "ori") == 0) {
-            if (obterInstrucaoTipoI(&tabelaTipoI, nomeInstrucao, regDestino, regFonte1, regFonte2, arquivoSaida, arquivoSaidaHex)!= 1) {
+            if (obterInstrucaoTipoI(&tabelaTipoI, nomeInstrucao, regDestino, regFonte1, regFonte2, arquivoSaida)!= 1) {
                 printf("Instrução %s não encontrada\n", nomeInstrucao);
             }
 

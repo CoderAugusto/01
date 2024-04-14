@@ -3,6 +3,6 @@
 
 #include "instrucoes.h"
 
-int obterInstrucaoTipoI(struct TabelaInstrucoes *tabela, char *nomeInstrucao, char *regDestino, char *regFonte1, char *regImediato, FILE *arquivoSaida, FILE *arquivoSaidaHex);
+int obterInstrucaoTipoI(struct TabelaInstrucoes *tabela, char *nomeInstrucao, char *regDestino, char *regFonte1, char *regImediato, FILE *arquivoSaida);
 
 #endif /* INSTRUCOESTIPOI_H */
