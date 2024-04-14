@@ -188,7 +188,12 @@ int main() {
                 printf("Erro ao obter instrução 'mv'.\n");
             }
 
-            // "li"
+        //TIPO I
+        else if(strcmp(nomeInstrucao, "lui") == 0){
+            sscanf(linha, "%s %[^,], %[^(](%[^)])", nomeInstrucao, regDestino, offset, regFonte1);            
+            if (obterInstrucaoTipoI(&tabelaTipoI, nomeInstrucao, regDestino, offset, regFonte1, arquivoSaida)!= 1) {
+                printf("Instrução %s não encontrada\n", nomeInstrucao);
+            }
 
             // "jal"
 
