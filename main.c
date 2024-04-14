@@ -187,11 +187,11 @@ int main() {
             if (obterInstrucaoTipoR(&tabelaTipoR, "add", regDestino, regFonte1, "x0", arquivoSaida)!= 1) {
                 printf("Erro ao obter instrução 'mv'.\n");
             }
-            else if(strcmp(nomeInstrucao, "lui") == 0){           
-                if (obterInstrucaoTipoI(&tabelaTipoI, nomeInstrucao, regDestino, offset, regFonte1, arquivoSaida)!= 1) {
-                    printf("Instrução %s não encontrada\n", nomeInstrucao);
-                }
+        else if(strcmp(nomeInstrucao, "lui") == 0){           
+            if (obterInstrucaoTipoI(&tabelaTipoI, nomeInstrucao, regDestino, offset, regFonte1, arquivoSaida)!= 1) {
+                printf("Instrução %s não encontrada\n", nomeInstrucao);
             }
+        }
             // "jal"
 
             // "jalr"
