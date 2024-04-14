@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#define ARQUIVO_SAIDA_HEX "saida_hex.txt"
 
 #include "instrucoes.h"
 #include "tipoI.h"
@@ -8,11 +9,11 @@
 #include "tipoS.h"
 #include "tipoSB.h"
 
-//#include "bin_para_hex.h"
+#include "bin_para_hex.h"
 
 #define ARQUIVO_ENTRADA "entrada.asm"
 #define ARQUIVO_SAIDA "saida.asm"
-#define ARQUIVO_SAIDA_HEX "saidaHex.asm"
+//#define ARQUIVO_SAIDA_HEX "saidaHex.asm"
 
 /* 
     TIPO I
@@ -52,7 +53,6 @@ int main() {
     **************************************************************/
     FILE *arquivoEntrada;
     FILE *arquivoSaida;
-    FILE *arquivoSaidaHex;
 
     // Abrir arquivo de entrada
     arquivoEntrada = fopen(ARQUIVO_ENTRADA, "r");
@@ -66,15 +66,6 @@ int main() {
         perror("Erro ao abrir o arquivo de saída");
         return 1;
     }
-
-    /*
-    arquivoSaidaHex = fopen(ARQUIVO_SAIDA_HEX, "w");
-    if (arquivoSaidaHex == NULL) {
-        perror("Erro ao abrir o arquivo de saída");
-        return 1;
-    }
-    */
-
     
     /**************************************************************
 
@@ -203,16 +194,20 @@ int main() {
         }
     }
 
-    /*
-    // Convertendo o arquivo de saída binário para hexadecimal
-    fseek(arquivoSaida, 0, SEEK_SET); // Reiniciar o ponteiro do arquivo de saída
-    binParaHex(arquivoSaida, arquivoSaidaHex);
-    */
+    //Hexadecimal:
+    FILE *arquivoSaidaHex = fopen(ARQUIVO_SAIDA_HEX, "w");
+    if (arquivoSaidaHex == NULL) {
+        perror("Erro ao abrir o arquivo de saída");
+        return 1;
+    }
+    // Chamando a função para converter e escrever a saída no arquivo de saída
+    binParaHex(arquivoEntrada, arquivoSaidaHex);
+    
 
     // Fechar arquivos
     fclose(arquivoEntrada);
     fclose(arquivoSaida);
-    //fclose(arquivoSaidaHex);
+    fclose(arquivoSaidaHex);
 
     return 0;
 }
