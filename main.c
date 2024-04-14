@@ -8,8 +8,11 @@
 #include "tipoS.h"
 #include "tipoSB.h"
 
+//#include "bin_para_hex.h"
+
 #define ARQUIVO_ENTRADA "entrada.asm"
 #define ARQUIVO_SAIDA "saida.asm"
+#define ARQUIVO_SAIDA_HEX "saidaHex.asm"
 
 /* 
     TIPO I
@@ -23,6 +26,9 @@
 
     TIPO SB
     bne, beq
+
+    PSEUDO INSTRUÇÕES
+    mv, li, jal, jalr, lui
 */
 
 int main() {
@@ -46,6 +52,7 @@ int main() {
     **************************************************************/
     FILE *arquivoEntrada;
     FILE *arquivoSaida;
+    FILE *arquivoSaidaHex;
 
     // Abrir arquivo de entrada
     arquivoEntrada = fopen(ARQUIVO_ENTRADA, "r");
@@ -59,6 +66,14 @@ int main() {
         perror("Erro ao abrir o arquivo de saída");
         return 1;
     }
+
+    /*
+    arquivoSaidaHex = fopen(ARQUIVO_SAIDA_HEX, "w");
+    if (arquivoSaidaHex == NULL) {
+        perror("Erro ao abrir o arquivo de saída");
+        return 1;
+    }
+    */
 
     
     /**************************************************************
@@ -142,12 +157,12 @@ int main() {
 
             sscanf(linha, "%s %[^,], %[^(](%[^)])", nomeInstrucao, regDestino, offset, regFonte1);            
 
-            if (obterInstrucaoTipoI(&tabelaTipoS, nomeInstrucao, regDestino, offset, regFonte1, arquivoSaida)!= 1) {
+            if (obterInstrucaoTipoI(&tabelaTipoI, nomeInstrucao, regDestino, offset, regFonte1, arquivoSaida,arquivoSaidaHex)!= 1) {
                 printf("Instrução %s não encontrada\n", nomeInstrucao);
             }
 
         } else if (strcmp(nomeInstrucao, "addi") == 0 || strcmp(nomeInstrucao, "andi") == 0 || strcmp(nomeInstrucao, "ori") == 0) {
-            if (obterInstrucaoTipoI(&tabelaTipoI, nomeInstrucao, regDestino, regFonte1, regFonte2, arquivoSaida)!= 1) {
+            if (obterInstrucaoTipoI(&tabelaTipoI, nomeInstrucao, regDestino, regFonte1, regFonte2, arquivoSaida, arquivoSaidaHex)!= 1) {
                 printf("Instrução %s não encontrada\n", nomeInstrucao);
             }
 
@@ -172,14 +187,30 @@ int main() {
             if (obterInstrucaoTipoR(&tabelaTipoR, "add", regDestino, regFonte1, "x0", arquivoSaida)!= 1) {
                 printf("Erro ao obter instrução 'mv'.\n");
             }
+
+            // "li"
+
+            // "jal"
+
+            // "jalr"
+
+            // "lui"
+
         } else {
             printf("Instrução %s não suportada\n", nomeInstrucao);
         }
     }
-    
 
-    // Fechar arquivo
+    /*
+    // Convertendo o arquivo de saída binário para hexadecimal
+    fseek(arquivoSaida, 0, SEEK_SET); // Reiniciar o ponteiro do arquivo de saída
+    binParaHex(arquivoSaida, arquivoSaidaHex);
+    */
+
+    // Fechar arquivos
     fclose(arquivoEntrada);
+    fclose(arquivoSaida);
+    //fclose(arquivoSaidaHex);
 
     return 0;
 }

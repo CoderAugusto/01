@@ -17,6 +17,6 @@ void inteiro_para_binario(int numero, char *binario, int bits);
 void imediato_para_binario(char *imediato, char *binario);
 void escrever_no_arquivo(FILE *arquivo, const char *codigo_maquina);
 void converter_offset(const char *offset, char *binario_offset);
-
+void binario_para_hexadecimal(const char *binario, char *hexadecimal);
 
 #endif /* INSTRUCOES_H */

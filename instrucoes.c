@@ -74,3 +74,27 @@ void escrever_no_arquivo(FILE *arquivo, const char *codigo_maquina) {
         printf("Erro ao escrever no arquivo de saída.\n");
     }
 }
+
+void binario_para_hexadecimal(const char *binario, char *hexadecimal) {
+    // Tabela de conversão de binário para hexadecimal
+    const char *tabela_hexadecimal = "0123456789ABCDEF";
+
+    // Buffer temporário para armazenar o resultado
+    char buffer[3];
+
+    // Inicializa o buffer do hexadecimal
+    *hexadecimal = '\0';
+
+    // Converte cada grupo de 4 bits de binário para hexadecimal
+    for (int i = 0; i < 8; i++) {
+        int decimal = 0;
+        for (int j = 0; j < 4; j++) {
+            decimal = (decimal << 1) + (*binario++ - '0');
+        }
+        buffer[0] = tabela_hexadecimal[decimal];
+        buffer[1] = '\0';
+
+        // Concatena o resultado ao buffer hexadecimal
+        strcat(hexadecimal, buffer);
+    }
+}
