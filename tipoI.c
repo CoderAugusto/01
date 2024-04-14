@@ -62,7 +62,12 @@ int obterInstrucaoTipoI(struct TabelaInstrucoes *tabela, char *nomeInstrucao, ch
 
             // Escreve no arquivo de saída
             fprintf(arquivoSaida, "%s%s%s%s%s\n", binario_offset, binario_regEndBase, tabela->funct3[2], binario_regDestino, tabela->opcode);
-        }
+        } else if (strcmp(nomeInstrucao, "lui") == 0) {
+            printf("opcode: %s\n", tabela->opcode);
+    
+            // Escreve no arquivo de saída
+            fprintf(arquivoSaida, "%s%s00000%s%s%s\n", binario_offset, "00000", binario_regDestino, tabela->opcode);
+}
     } else{
 
         // Variáveis
