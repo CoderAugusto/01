@@ -14,11 +14,11 @@ O projeto é organizado da seguinte maneira:
       > binParaHex: Lê um arquivo de entrada contendo instruções binárias, converte cada instrução para hexadecimal e escreve no arquivo de saída.
       
   - **instrucoes.c**:
-      > converter_offset: Converte um offset (um número inteiro) para sua representação binária de 12 bits, usando complemento de dois se o número for negativo;
-      > registrador_para_binario: Converte o número de um registrador para sua representação binária de tamanho variável especificado, começando a partir do índice 1 da string do registrador;
-      > inteiro_para_binario: Converte um número inteiro para sua representação binária de um tamanho específico em bits;
-      > imediato_para_binario: Converte um imediato (um número inteiro) para sua representação binária de 12 bits, usando complemento de dois se o número for negativo;
-      > escrever_no_arquivo: Escreve uma string de código de máquina em um arquivo, seguido de uma nova linha, e verifica se ocorreu algum erro durante a escrita.
+      * converter_offset: Converte um offset (um número inteiro) para sua representação binária de 12 bits, usando complemento de dois se o número for negativo;
+      * registrador_para_binario: Converte o número de um registrador para sua representação binária de tamanho variável especificado, começando a partir do índice 1 da string do registrador;
+      * inteiro_para_binario: Converte um número inteiro para sua representação binária de um tamanho específico em bits;
+      * imediato_para_binario: Converte um imediato (um número inteiro) para sua representação binária de 12 bits, usando complemento de dois se o número for negativo;
+      * escrever_no_arquivo: Escreve uma string de código de máquina em um arquivo, seguido de uma nova linha, e verifica se ocorreu algum erro durante a escrita.
 
   -**tipoI.c**:
       > Implementa a função obterInstrucaoTipoI, responsável por converter e escrever instruções do tipo I em binário no arquivo de saída.
