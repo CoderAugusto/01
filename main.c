@@ -10,7 +10,7 @@
 #include "bin_para_hex.h"
 
 #define ARQUIVO_ENTRADA "entrada.asm"
-#define ARQUIVO_SAIDA "saida.asm"
+#define ARQUIVO_SAIDA "saida_bin.asm"
 #define ARQUIVO_SAIDA_HEX "saida_hex.asm"
 
 /* 
