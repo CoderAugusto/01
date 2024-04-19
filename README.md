@@ -13,7 +13,11 @@ Pseudo | mv |
 
 ## Estrutura do Projeto
 
-O projeto é organizado da seguinte maneira:
+![organização](https://github.com/CoderAugusto/TP01_OC/assets/137956951/8046bd8f-9819-483a-8f72-fe33f8a592f9)
+
+### A figura acima mostra como foi estruturado.
+
+### O projeto é organizado da seguinte maneira:
 
 - **main.c**: O arquivo principal do programa, que contém o loop principal para processar as instruções do arquivo de entrada.
 - **include/**: Esta pasta contém os arquivos de cabeçalho.
@@ -47,7 +51,23 @@ O projeto é organizado da seguinte maneira:
   
 - **entrada.asm**: O arquivo de entrada contendo as instruções em linguagem de montagem a serem processadas.
 
+- Exemplo de entrada teste que foi disponibilizado na documentação:
+
+![entrada](https://github.com/CoderAugusto/TP01_OC/assets/137956951/287af2f8-2a97-433d-92ec-526da234f6c5)!
+
 - **saida/**: Esta pasta contém os arquivos de saída onde o código de máquina correspondente a cada instrução será gerado.
+
+- Saída em binário
+
+  
+![saidaBin](https://github.com/CoderAugusto/TP01_OC/assets/137956951/aaa9320c-a7ee-4820-aa9d-ad6a33c49915)
+
+
+- Saída em hexadecimal
+
+
+![saidaHex](https://github.com/CoderAugusto/TP01_OC/assets/137956951/e411c96a-4547-4887-9fe4-46ebec1cb68c)
+
   
 ## Compilação e Execução
 - **1º:** gcc -o main -Iinclude src/*.c main.c
