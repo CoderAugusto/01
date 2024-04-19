@@ -26,11 +26,11 @@ int obterInstrucaoTipoS(struct TabelaInstrucoes *tabela, char *nomeInstrucao, ch
     registrador_para_binario(regEndBase, binario_endBase, 5);
     converter_offset(offset, binario_offset);
 
-
+    /*
     printf("\nO registrador %s em binário é: %s\n", regDestino, binario_regDestino);
     printf("O registrador de endereço base %s em binário é: %s\n", regEndBase, binario_endBase);
     printf("O offset %s em binário é: %s\n", offset, binario_offset);
-    
+    */
     
     
     /*

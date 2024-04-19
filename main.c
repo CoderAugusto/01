@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define ARQUIVO_SAIDA_HEX "saida_hex.txt"
 
 #include "instrucoes.h"
 #include "tipoI.h"
@@ -13,7 +12,7 @@
 
 #define ARQUIVO_ENTRADA "entrada.asm"
 #define ARQUIVO_SAIDA "saida.asm"
-//#define ARQUIVO_SAIDA_HEX "saidaHex.asm"
+#define ARQUIVO_SAIDA_HEX "saida_hex.asm"
 
 /* 
     TIPO I
@@ -52,7 +51,22 @@ int main() {
 
     **************************************************************/
     FILE *arquivoEntrada;
-    FILE *arquivoSaida;
+    FILE *arquivoSaidaBin;
+    FILE *arquivoSaidaHex;
+
+    // Caminho das pastas de saída
+    char pastaSaidas[100];
+    strcpy(pastaSaidas, "saidas/"); // Pasta raiz onde os arquivos serão salvos
+
+    // Caminho do arquivo de saída binário
+    char caminhoArquivoBin[100]; 
+    strcpy(caminhoArquivoBin, pastaSaidas);
+    strcat(caminhoArquivoBin, ARQUIVO_SAIDA);
+
+    // Caminho do arquivo de saída hexadecimal
+    char caminhoArquivoHex[100]; 
+    strcpy(caminhoArquivoHex, pastaSaidas);
+    strcat(caminhoArquivoHex, ARQUIVO_SAIDA_HEX);
 
     // Abrir arquivo de entrada
     arquivoEntrada = fopen(ARQUIVO_ENTRADA, "r");
@@ -61,11 +75,22 @@ int main() {
         return 1;
     }
 
-    arquivoSaida = fopen(ARQUIVO_SAIDA, "w");
-    if (arquivoSaida == NULL) {
-        perror("Erro ao abrir o arquivo de saída");
-        return 1;
+    /*ABRINDO OS ARQUIVOS DE SAÍDA*/
+
+    // Instruções em binário
+    arquivoSaidaBin = fopen(caminhoArquivoBin, "w");
+    if (arquivoSaidaBin == NULL) {
+        printf("Erro ao abrir o arquivo de saída binário.\n");
+        return 0; // Indica que ocorreu um erro
     }
+
+    // Instruções em hexadecimal
+    arquivoSaidaHex = fopen(caminhoArquivoHex, "w");
+    if (arquivoSaidaHex == NULL) {
+        printf("Erro ao abrir o arquivo de saída hexadecimal.\n");
+        return 0; // Indica que ocorreu um erro
+    }
+
     
     /**************************************************************
 
@@ -122,7 +147,7 @@ int main() {
     // Processar cada linha do arquivo
     while (fgets(linha, sizeof(linha), arquivoEntrada) != NULL) {
 
-        printf("\n%s", linha);
+        //printf("\n%s", linha);
 
         sscanf(linha,"%s", nomeInstrucao);
         
@@ -131,7 +156,7 @@ int main() {
 
             sscanf(linha, "%s %[^,], %[^(](%[^)])", nomeInstrucao, regDestino, offset, regFonte1);            
 
-            if (obterInstrucaoTipoS(&tabelaTipoS, nomeInstrucao, regDestino, offset, regFonte1, arquivoSaida)!= 1) {
+            if (obterInstrucaoTipoS(&tabelaTipoS, nomeInstrucao, regDestino, offset, regFonte1, arquivoSaidaBin)!= 1) {
                 printf("Instrução %s não encontrada\n", nomeInstrucao);
             }            
         }        
@@ -148,12 +173,12 @@ int main() {
 
             sscanf(linha, "%s %[^,], %[^(](%[^)])", nomeInstrucao, regDestino, offset, regFonte1);            
 
-            if (obterInstrucaoTipoI(&tabelaTipoI, nomeInstrucao, regDestino, offset, regFonte1, arquivoSaida)!= 1) {
+            if (obterInstrucaoTipoI(&tabelaTipoI, nomeInstrucao, regDestino, offset, regFonte1, arquivoSaidaBin)!= 1) {
                 printf("Instrução %s não encontrada\n", nomeInstrucao);
             }
 
         } else if (strcmp(nomeInstrucao, "addi") == 0 || strcmp(nomeInstrucao, "andi") == 0 || strcmp(nomeInstrucao, "ori") == 0) {
-            if (obterInstrucaoTipoI(&tabelaTipoI, nomeInstrucao, regDestino, regFonte1, regFonte2, arquivoSaida)!= 1) {
+            if (obterInstrucaoTipoI(&tabelaTipoI, nomeInstrucao, regDestino, regFonte1, regFonte2, arquivoSaidaBin)!= 1) {
                 printf("Instrução %s não encontrada\n", nomeInstrucao);
             }
 
@@ -162,12 +187,12 @@ int main() {
                 strcmp(nomeInstrucao, "or") == 0 || strcmp(nomeInstrucao, "xor") == 0 || strcmp(nomeInstrucao, "sll") == 0 ||
                 strcmp(nomeInstrucao, "srl") == 0) {
                     
-            if (obterInstrucaoTipoR(&tabelaTipoR, nomeInstrucao, regDestino, regFonte1, regFonte2, arquivoSaida)!= 1) {
+            if (obterInstrucaoTipoR(&tabelaTipoR, nomeInstrucao, regDestino, regFonte1, regFonte2, arquivoSaidaBin)!= 1) {
                 printf("Instrução %s não encontrada\n", nomeInstrucao);
             }
         } else if(strcmp(nomeInstrucao, "bne") == 0 || strcmp(nomeInstrucao, "beq") == 0){
 
-            if (obterInstrucaoTipoSB(&tabelaTipoR, nomeInstrucao, regDestino, regFonte1, regFonte2, arquivoSaida)!= 1) {
+            if (obterInstrucaoTipoSB(&tabelaTipoR, nomeInstrucao, regDestino, regFonte1, regFonte2, arquivoSaidaBin)!= 1) {
                 printf("Instrução %s não encontrada\n", nomeInstrucao);
             }
 
@@ -175,38 +200,36 @@ int main() {
         // PSEUDO CÓDIGO
         } else if (strcmp(nomeInstrucao, "mv") == 0) {
             // "mv" é equivalente a "add" em RISC-V
-            if (obterInstrucaoTipoR(&tabelaTipoR, "add", regDestino, regFonte1, "x0", arquivoSaida)!= 1) {
+            if (obterInstrucaoTipoR(&tabelaTipoR, "add", regDestino, regFonte1, "x0", arquivoSaidaBin)!= 1) {
                 printf("Erro ao obter instrução 'mv'.\n");
             }
         else if(strcmp(nomeInstrucao, "lui") == 0){           
-            if (obterInstrucaoTipoI(&tabelaTipoI, nomeInstrucao, regDestino, offset, regFonte1, arquivoSaida)!= 1) {
+            if (obterInstrucaoTipoI(&tabelaTipoI, nomeInstrucao, regDestino, offset, regFonte1, arquivoSaidaBin)!= 1) {
                 printf("Instrução %s não encontrada\n", nomeInstrucao);
             }
         }
-            // "jal"
-
-            // "jalr"
-
-            // "lui"
 
         } else {
             printf("Instrução %s não suportada\n", nomeInstrucao);
         }
     }
 
-    //Hexadecimal:
-    FILE *arquivoSaidaHex = fopen(ARQUIVO_SAIDA_HEX, "w");
-    if (arquivoSaidaHex == NULL) {
-        perror("Erro ao abrir o arquivo de saída");
-        return 1;
+    // Fecha o aqruivo de saída em binário para abrir em modo leitura
+    fclose(arquivoSaidaBin);
+
+    // Abrindo o arquivo de instruções em binário agora em modo leitura
+    arquivoSaidaBin = fopen(caminhoArquivoBin, "r");
+    if (arquivoSaidaBin == NULL) {
+        printf("Erro ao abrir o arquivo de saída binário.\n");
+        return 0; // Indica que ocorreu um erro
     }
+    
     // Chamando a função para converter e escrever a saída no arquivo de saída
-    binParaHex(arquivoEntrada, arquivoSaidaHex);
+    binParaHex(arquivoSaidaBin, arquivoSaidaHex);
     
 
     // Fechar arquivos
     fclose(arquivoEntrada);
-    fclose(arquivoSaida);
     fclose(arquivoSaidaHex);
 
     return 0;

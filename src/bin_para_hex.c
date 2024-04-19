@@ -1,7 +1,7 @@
-#include "bin_para_hex.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "bin_para_hex.h"
 
 // Função para converter uma instrução binária em hexadecimal
 char* binarioParaHex(const char *binario) {
@@ -19,12 +19,16 @@ char* binarioParaHex(const char *binario) {
 }
 
 // Função para ler o arquivo de entrada em formato .asm e escrever o arquivo de saída em hexadecimal
-void binParaHex(FILE *arquivoEntrada, FILE *arquivoSaida) {
+void binParaHex(FILE *arquivoSaidaBin, FILE *arquivoSaidaHex) {
+    
     char linha[100]; // Armazena cada linha do arquivo
     char instrucaoBinaria[33]; // Armazena a instrução binária (32 bits) + 1 para o caractere nulo
 
     // Processar cada linha do arquivo de entrada
-    while (fgets(linha, sizeof(linha), arquivoEntrada) != NULL) {
+    while (fgets(linha, sizeof(linha), arquivoSaidaBin) != NULL) {
+        // Mostrar a linha lida do arquivo de entrada binário
+        printf("Linha lida do arquivo de entrada binário: %s", linha);
+
         // Converter a linha para binário (supondo que cada linha já está em formato binário)
         sscanf(linha, "%32s", instrucaoBinaria);
 
@@ -32,7 +36,7 @@ void binParaHex(FILE *arquivoEntrada, FILE *arquivoSaida) {
         char *stringHex = binarioParaHex(instrucaoBinaria);
 
         // Escrever a instrução hexadecimal no arquivo de saída
-        fprintf(arquivoSaida, "%s\n", stringHex);
+        fprintf(arquivoSaidaHex, "%s\n", stringHex);
 
         // Liberar a memória alocada para a string hexadecimal
         free(stringHex);

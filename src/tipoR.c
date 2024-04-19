@@ -21,11 +21,11 @@ int obterInstrucaoTipoR(struct TabelaInstrucoes *tabela, char *nomeInstrucao, ch
     registrador_para_binario(regFonte1, binario_regFonte1, 5);
     registrador_para_binario(regFonte2, binario_regFonte2, 5);
 
-
+    /*
     printf("\nO registrador %s em binário é: %s\n", regDestino, binario_regDestino);
     printf("O registrador %s em binário é: %s\n", regFonte1, binario_regFonte1);
     printf("O registrador %s em binário é: %s\n", regFonte2, binario_regFonte2);
-
+    */
 
     if (strcmp(nomeInstrucao, "add") == 0){
         
