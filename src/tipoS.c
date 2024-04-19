@@ -26,11 +26,11 @@ int obterInstrucaoTipoS(struct TabelaInstrucoes *tabela, char *nomeInstrucao, ch
     registrador_para_binario(regEndBase, binario_endBase, 5);
     converter_offset(offset, binario_offset);
 
-    /*
+    
     printf("\nO registrador %s em binário é: %s\n", regDestino, binario_regDestino);
     printf("O registrador de endereço base %s em binário é: %s\n", regEndBase, binario_endBase);
     printf("O offset %s em binário é: %s\n", offset, binario_offset);
-    */
+    
     
     
     /*
@@ -61,7 +61,8 @@ int obterInstrucaoTipoS(struct TabelaInstrucoes *tabela, char *nomeInstrucao, ch
 
         // Escreve no arquivo de saída
         fprintf(arquivoSaida, "%s%s%s%s%s%s\n", parte_superior, binario_regDestino, binario_endBase,tabela->funct3[0], parte_inferior, tabela->opcode);
-        
+
+        return 1;
 
 
     }else if (strcmp(nomeInstrucao, "sh") == 0) {
@@ -72,15 +73,18 @@ int obterInstrucaoTipoS(struct TabelaInstrucoes *tabela, char *nomeInstrucao, ch
         // Escreve no arquivo de saída
         fprintf(arquivoSaida, "%s%s%s%s%s%s\n", parte_superior, binario_regDestino, binario_endBase,tabela->funct3[1], parte_inferior, tabela->opcode);
 
-    }  
-    
-   else if (strcmp(nomeInstrucao, "sw") == 0) {
+
+    } else if (strcmp(nomeInstrucao, "sw") == 0) {
         printf("opcode: %s\n", tabela->opcode);
         printf("funct3: %s\n", tabela->funct3[2]);
 
         // Escreve no arquivo de saída
         fprintf(arquivoSaida, "%s%s%s%s%s%s\n", parte_superior, binario_regDestino, binario_endBase,tabela->funct3[2], parte_inferior, tabela->opcode);
-    
+
+    } else {
+        // Instrução não suportada
+        printf("Instrução %s não suportada\n", nomeInstrucao);
+        return 0; // Instrução não encontrada
     }
 
     return 1;

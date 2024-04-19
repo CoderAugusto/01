@@ -22,11 +22,11 @@ int obterInstrucaoTipoSB(struct TabelaInstrucoes *tabela, char *nomeInstrucao, c
     registrador_para_binario(regFonte2, binario_regFonte2, 5);
     imediato_para_binario(regEndDestino, binario_EndDestino);
 
-    /*
+    
     printf("\nO registrador %s em binário é: %s\n", regFonte1, binario_regFonte1);
     printf("O registrador %s em binário é: %s\n", regFonte2, binario_regFonte2);
     printf("O endereço da label %s em binário é: %s\n", regEndDestino, binario_EndDestino);
-    */
+    
     
     // Variáveis para armazenar as partes separadas do endereço do label
     char parte_bit12[2];
@@ -50,26 +50,26 @@ int obterInstrucaoTipoSB(struct TabelaInstrucoes *tabela, char *nomeInstrucao, c
     strncpy(parte_bits4_0, binario_EndDestino + 7, 5);
     parte_bits4_0[5] = '\0'; // Adiciona o terminador de string
 
-    /*
+    
     // Imprimir as partes separadas
     printf("Bit 12: %s\n", parte_bit12);
     printf("Bits 10 a 5: %s\n", parte_bits10_5);
     printf("Bit 11: %s\n", parte_bit11);
     printf("Bits 4 a 0: %s\n", parte_bits4_0);
-    */
+    
 
     if (strcmp(nomeInstrucao, "bne") == 0){
 
-        //printf("opcode: %s\n", tabela->opcode);
-        //printf("funct3: %s\n", tabela->funct3[0]);
+        printf("opcode: %s\n", tabela->opcode);
+        printf("funct3: %s\n", tabela->funct3[0]);
 
         // Escreve no arquivo de saída
         fprintf(arquivoSaida, "%s%s%s%s%s%s%s%s\n", parte_bit12, parte_bits10_5, binario_regFonte1, binario_regFonte2, tabela->funct3[0], parte_bits4_0, parte_bit11, tabela->opcode);
 
     } else if (strcmp(nomeInstrucao, "beq") == 0){
 
-        //printf("opcode: %s\n", tabela->opcode);
-        //printf("funct3: %s\n", tabela->funct3[1]);
+        printf("opcode: %s\n", tabela->opcode);
+        printf("funct3: %s\n", tabela->funct3[1]);
 
         // Escreve no arquivo de saída
         fprintf(arquivoSaida, "%s%s%s%s%s%s%s%s\n", parte_bit12, parte_bits10_5, binario_regFonte2, binario_regFonte1, tabela->funct3[1], parte_bits4_0, parte_bit11, tabela->opcode);

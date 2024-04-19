@@ -7,7 +7,6 @@
 #include "tipoR.h"
 #include "tipoS.h"
 #include "tipoSB.h"
-
 #include "bin_para_hex.h"
 
 #define ARQUIVO_ENTRADA "entrada.asm"
@@ -28,7 +27,7 @@
     bne, beq
 
     PSEUDO INSTRUÇÕES
-    mv, li, jal, jalr, lui
+    mv
 */
 
 int main() {
@@ -147,7 +146,8 @@ int main() {
     // Processar cada linha do arquivo
     while (fgets(linha, sizeof(linha), arquivoEntrada) != NULL) {
 
-        //printf("\n%s", linha);
+        printf("\n---------------------------------------------------\n");
+        printf("->%s", linha);
 
         sscanf(linha,"%s", nomeInstrucao);
         
@@ -163,9 +163,6 @@ int main() {
 
         sscanf(linha, "%s %[^,], %[^,], %[^,]", nomeInstrucao, regDestino, regFonte1, regFonte2);
         
-        
-        printf("\n\n\n");
-        
         // Verificar o tipo da instrução e obter as informações da tabela correspondente
 
         //TIPO I
@@ -178,21 +175,23 @@ int main() {
             }
 
         } else if (strcmp(nomeInstrucao, "addi") == 0 || strcmp(nomeInstrucao, "andi") == 0 || strcmp(nomeInstrucao, "ori") == 0) {
+
             if (obterInstrucaoTipoI(&tabelaTipoI, nomeInstrucao, regDestino, regFonte1, regFonte2, arquivoSaidaBin)!= 1) {
                 printf("Instrução %s não encontrada\n", nomeInstrucao);
             }
 
         // TIPO R
-        } else if (strcmp(nomeInstrucao, "add") == 0 || strcmp(nomeInstrucao, "sub") == 0 || strcmp(nomeInstrucao, "and") == 0 ||
-                strcmp(nomeInstrucao, "or") == 0 || strcmp(nomeInstrucao, "xor") == 0 || strcmp(nomeInstrucao, "sll") == 0 ||
-                strcmp(nomeInstrucao, "srl") == 0) {
+        } else if (strcmp(nomeInstrucao, "add") == 0 || strcmp(nomeInstrucao, "sub") == 0 || strcmp(nomeInstrucao, "and") == 0 || strcmp(nomeInstrucao, "or") == 0 || strcmp(nomeInstrucao, "xor") == 0 || strcmp(nomeInstrucao, "sll") == 0 ||
+        strcmp(nomeInstrucao, "srl") == 0) {
                     
             if (obterInstrucaoTipoR(&tabelaTipoR, nomeInstrucao, regDestino, regFonte1, regFonte2, arquivoSaidaBin)!= 1) {
                 printf("Instrução %s não encontrada\n", nomeInstrucao);
             }
+        
+        // TIPO SB
         } else if(strcmp(nomeInstrucao, "bne") == 0 || strcmp(nomeInstrucao, "beq") == 0){
 
-            if (obterInstrucaoTipoSB(&tabelaTipoR, nomeInstrucao, regDestino, regFonte1, regFonte2, arquivoSaidaBin)!= 1) {
+            if (obterInstrucaoTipoSB(&tabelaTipoSB, nomeInstrucao, regDestino, regFonte1, regFonte2, arquivoSaidaBin)!= 1) {
                 printf("Instrução %s não encontrada\n", nomeInstrucao);
             }
 
@@ -202,15 +201,8 @@ int main() {
             // "mv" é equivalente a "add" em RISC-V
             if (obterInstrucaoTipoR(&tabelaTipoR, "add", regDestino, regFonte1, "x0", arquivoSaidaBin)!= 1) {
                 printf("Erro ao obter instrução 'mv'.\n");
-            }
-        else if(strcmp(nomeInstrucao, "lui") == 0){           
-            if (obterInstrucaoTipoI(&tabelaTipoI, nomeInstrucao, regDestino, offset, regFonte1, arquivoSaidaBin)!= 1) {
-                printf("Instrução %s não encontrada\n", nomeInstrucao);
-            }
-        }
 
-        } else {
-            printf("Instrução %s não suportada\n", nomeInstrucao);
+            }
         }
     }
 
