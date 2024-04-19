@@ -53,7 +53,7 @@ Pseudo | mv |
 
 - Exemplo de entrada teste que foi disponibilizado na documentação:
 
-![entrada](https://github.com/CoderAugusto/TP01_OC/assets/137956951/287af2f8-2a97-433d-92ec-526da234f6c5)!
+![entrada](https://github.com/CoderAugusto/TP01_OC/assets/137956951/287af2f8-2a97-433d-92ec-526da234f6c5)
 
 - **saida/**: Esta pasta contém os arquivos de saída onde o código de máquina correspondente a cada instrução será gerado.
 
