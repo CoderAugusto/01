@@ -11,6 +11,7 @@ O projeto é organizado da seguinte maneira:
   - **instrucoes.h**: O arquivo de cabeçalho que contém as definições das estruturas e protótipos de função usados nos arquivos de código-fonte.
 - **src/**: Esta pasta contém os arquivos de código-fonte.
   - **instrucoes.c**: Este arquivo contém as funções relacionadas à manipulação das instruções, incluindo a conversão de registradores e imediatos para representação binária, bem como a escrita do código de máquina no arquivo de saída.
+  - **entre outras**
 - **entrada.asm**: O arquivo de entrada contendo as instruções em linguagem de montagem a serem processadas.
 - **saida/**: Esta pasta contém os arquivos de saída onde o código de máquina correspondente a cada instrução será gerado.
 
