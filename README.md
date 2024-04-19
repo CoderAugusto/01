@@ -2,6 +2,15 @@
 
 Este é um projeto de implementação de instruções em linguagem de montagem. O objetivo é ler um arquivo de entrada contendo instruções em linguagem de montagem e gerar um arquivo de saída contendo o código de máquina correspondente para cada instrução, de acordo com as especificações fornecidas.
 
+## Instruções que foram implementadas
+Tipo | Instrução | 
+:---: | ---:
+I | lb, lh, lw, addi, andi, ori | 
+R | add, sub, and, or, xor, sll, srl |
+S | sb, sh, sw |
+SB | bne, beq |
+Pseudo | mv |
+
 ## Estrutura do Projeto
 
 O projeto é organizado da seguinte maneira:
