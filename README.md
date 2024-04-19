@@ -20,19 +20,19 @@ O projeto é organizado da seguinte maneira:
       * imediato_para_binario: Converte um imediato (um número inteiro) para sua representação binária de 12 bits, usando complemento de dois se o número for negativo;
       * escrever_no_arquivo: Escreve uma string de código de máquina em um arquivo, seguido de uma nova linha, e verifica se ocorreu algum erro durante a escrita.
 
-  -**tipoI.c**:
+  - **tipoI.c**:
       * Implementa a função obterInstrucaoTipoI, responsável por converter e escrever instruções do tipo I em binário no arquivo de saída.
       * Contém funções auxiliares para conversão de registradores e imediatos para binário.
   
-  -**tipoR.c**:
+  - **tipoR.c**:
       * Implementa a função obterInstrucaoTipoR, responsável por converter e escrever instruções do tipo R em binário no arquivo de saída.
       * Contém funções auxiliares para conversão de registradores para binário.
   
-  -**tipoS**:
+  - **tipoS**:
       * Implementa a função obterInstrucaoTipoS, responsável por converter e escrever instruções do tipo S em binário no arquivo de saída.
       * Contém funções auxiliares para conversão de registradores e offset para binário, além da separação do offset em partes.
   
-  -**tipoSB**:
+  - **tipoSB**:
       * Implementa a função obterInstrucaoTipoSB, responsável por converter e escrever instruções do tipo SB em binário no arquivo de saída.
       * Contém funções auxiliares para conversão de registradores e endereço do destino para binário, além da separação do endereço do destino em partes.
   
