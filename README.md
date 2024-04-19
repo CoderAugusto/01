@@ -10,8 +10,8 @@ O projeto é organizado da seguinte maneira:
 - **include/**: Esta pasta contém os arquivos de cabeçalho.
 - **src/**: Esta pasta contém os arquivos de código-fonte.
   - **bin_para_hex**:
-      > binarioParaHex: Converte uma string binária em hexadecimal;
-      > binParaHex: Lê um arquivo de entrada contendo instruções binárias, converte cada instrução para hexadecimal e escreve no arquivo de saída.
+      * binarioParaHex: Converte uma string binária em hexadecimal;
+      * binParaHex: Lê um arquivo de entrada contendo instruções binárias, converte cada instrução para hexadecimal e escreve no arquivo de saída.
       
   - **instrucoes.c**:
       * converter_offset: Converte um offset (um número inteiro) para sua representação binária de 12 bits, usando complemento de dois se o número for negativo;
@@ -21,20 +21,20 @@ O projeto é organizado da seguinte maneira:
       * escrever_no_arquivo: Escreve uma string de código de máquina em um arquivo, seguido de uma nova linha, e verifica se ocorreu algum erro durante a escrita.
 
   -**tipoI.c**:
-      > Implementa a função obterInstrucaoTipoI, responsável por converter e escrever instruções do tipo I em binário no arquivo de saída.
-      > Contém funções auxiliares para conversão de registradores e imediatos para binário.
+      * Implementa a função obterInstrucaoTipoI, responsável por converter e escrever instruções do tipo I em binário no arquivo de saída.
+      * Contém funções auxiliares para conversão de registradores e imediatos para binário.
   
   -**tipoR.c**:
-      > Implementa a função obterInstrucaoTipoR, responsável por converter e escrever instruções do tipo R em binário no arquivo de saída.
-      > Contém funções auxiliares para conversão de registradores para binário.
+      * Implementa a função obterInstrucaoTipoR, responsável por converter e escrever instruções do tipo R em binário no arquivo de saída.
+      * Contém funções auxiliares para conversão de registradores para binário.
   
   -**tipoS**:
-      > Implementa a função obterInstrucaoTipoS, responsável por converter e escrever instruções do tipo S em binário no arquivo de saída.
-      > Contém funções auxiliares para conversão de registradores e offset para binário, além da separação do offset em partes.
+      * Implementa a função obterInstrucaoTipoS, responsável por converter e escrever instruções do tipo S em binário no arquivo de saída.
+      * Contém funções auxiliares para conversão de registradores e offset para binário, além da separação do offset em partes.
   
   -**tipoSB**:
-      > Implementa a função obterInstrucaoTipoSB, responsável por converter e escrever instruções do tipo SB em binário no arquivo de saída.
-      > Contém funções auxiliares para conversão de registradores e endereço do destino para binário, além da separação do endereço do destino em partes.
+      * Implementa a função obterInstrucaoTipoSB, responsável por converter e escrever instruções do tipo SB em binário no arquivo de saída.
+      * Contém funções auxiliares para conversão de registradores e endereço do destino para binário, além da separação do endereço do destino em partes.
   
 - **entrada.asm**: O arquivo de entrada contendo as instruções em linguagem de montagem a serem processadas.
 
