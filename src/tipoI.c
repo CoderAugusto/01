@@ -143,10 +143,6 @@ int obterInstrucaoTipoI(struct TabelaInstrucoes *tabela, char *nomeInstrucao, ch
                 printf("Erro ao escrever no arquivo de saída.\n");
                 return 0; // Indica que ocorreu um erro
             }
-        } else {
-            // Instrução não suportada
-            printf("Instrução %s não suportada\n", nomeInstrucao);
-            return 0; // Instrução não encontrada
         }        
     }
     return 1;

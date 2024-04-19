@@ -203,6 +203,10 @@ int main() {
                 printf("Erro ao obter instrução 'mv'.\n");
 
             }
+        } else {
+            // Instrução não suportada
+            printf("Instrução %s não suportada\n", nomeInstrucao);
+            return 0; // Instrução não encontrada
         }
     }
 

@@ -75,12 +75,5 @@ int obterInstrucaoTipoSB(struct TabelaInstrucoes *tabela, char *nomeInstrucao, c
         fprintf(arquivoSaida, "%s%s%s%s%s%s%s%s\n", parte_bit12, parte_bits10_5, binario_regFonte2, binario_regFonte1, tabela->funct3[1], parte_bits4_0, parte_bit11, tabela->opcode);
         
     }
-
-    else {
-        // Instrução não suportada
-        printf("Instrução %s não suportada\n", nomeInstrucao);
-        return 0; // Instrução não encontrada
-    }
-
     return 1;
 }
